@@ -47,12 +47,10 @@ function saveNote(data){ //Saving all the changed data
 
 function deleteNote(id){ //Deleting a note
 	const prevData = getNotes();
-	id= parseInt(id);
-	const newData = prevData.filter((item)=>{
-		return item.id !== id;
-	})
-	if(newData.length !== prevData.length){
-		saveNote(newData);
+	id=parseInt(id);
+	if(id>0 && id<=prevData.length){
+		const newData = prevData.splice(id-1,1);
+		saveNote(prevData);
 		console.log(chalk.magenta.bold('Note Deleted !'));	
 	}
 	else
@@ -62,7 +60,7 @@ function deleteNote(id){ //Deleting a note
 
 function readNote(id){ //Reading a note
 	const prevData = getNotes();
-	id= parseInt(id);
+	id=parseInt(id);
 	let i=0,flag=0;
 	while(i<prevData.length){
 		if(prevData[i]['id'] === id){
