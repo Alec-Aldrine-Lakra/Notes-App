@@ -29,6 +29,22 @@ yargs.command({
 	}
 })
 
+//Read a Note
+yargs.command({
+	command:'read',
+	describe : 'Read a Note',
+	builder:{
+		title:{
+			describe:'Title of the note',
+			demandOption:true, //Makes the argueent compulsory with add command
+			type:'string' //doesn't allow boolean value meaning it expects an arguement
+		}
+	},
+	handler: function(argv){
+		util.readNote(argv['title']);
+	}
+})
+
 //Displaying all the notes
 yargs.command({
 	command:'display',
