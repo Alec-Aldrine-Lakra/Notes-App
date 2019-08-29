@@ -34,14 +34,14 @@ yargs.command({
 	command:'read',
 	describe : 'Read a Note',
 	builder:{
-		title:{
-			describe:'Title of the note',
+		id:{
+			describe:'Id of the note',
 			demandOption:true, //Makes the argueent compulsory with add command
 			type:'string' //doesn't allow boolean value meaning it expects an arguement
 		}
 	},
 	handler: function(argv){
-		util.readNote(argv['title']);
+		util.readNote(argv['id']);
 	}
 })
 
@@ -62,14 +62,14 @@ yargs.command({
 	command:'delete',
 	describe : 'Delete a Note',
 	builder:{
-		title:{
-			describe:'Title of the note',
+		id:{
+			describe:'Id of the note',
 			demandOption:true, //Makes the argueent compulsory with add command
 			type:'string' //doesn't allow boolean value meaning it expects an arguement
 		}
 	},
 	handler: function(argv){
-		util.deleteNote(argv['title']);
+		util.deleteNote(argv['id']);
 	}
 })
 yargs.parse(); //Parsing above arguements

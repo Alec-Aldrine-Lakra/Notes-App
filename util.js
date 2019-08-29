@@ -13,16 +13,22 @@ function getNotes(){ //Display all notes
 }
 
 function addNote(t,a,b){ //Adding a new note
+	let uid;
 	const prevData = getNotes();
-	const data = {
-		title : t,
-		author: a,
-		description: b
-	};
 	const duplicateCheck = prevData.find((item)=>{
 		return item.title === t; //returns the first element that matches the title instead of using filter() that checks entire array
 	})
-	if(duplicateCheck.length ==0){
+	if(duplicateCheck === undefined){
+		if(prevData.length === 0)
+			uid=1;
+		else
+			uid = prevData[prevData.length-1]['id']+1;	
+		const data = {
+			id: uid,
+			title : t,
+			author: a,
+			description: b
+		};
 		prevData.push(data);
 		saveNote(prevData);
 		console.log(chalk.bold.green('Note Saved!'));
@@ -39,10 +45,11 @@ function saveNote(data){ //Saving all the changed data
 	})
 }
 
-function deleteNote(title){ //Deleting a note
+function deleteNote(id){ //Deleting a note
 	const prevData = getNotes();
+	id= parseInt(id);
 	const newData = prevData.filter((item)=>{
-		return item.title !== title;
+		return item.id !== id;
 	})
 	if(newData.length !== prevData.length){
 		saveNote(newData);
@@ -53,12 +60,14 @@ function deleteNote(title){ //Deleting a note
 	
 }
 
-function readNote(title){ //Reading a note
+function readNote(id){ //Reading a note
 	const prevData = getNotes();
+	id= parseInt(id);
 	let i=0,flag=0;
 	while(i<prevData.length){
-		if(prevData[i]['title'] === title){
-			console.log(chalk.bold.cyan(prevData[i].description));
+		if(prevData[i]['id'] === id){
+			console.log(chalk.bold.cyan(prevData[i]['title']+' By '+prevData[i]['author']));
+			console.log(chalk.bold.cyan(prevData[i]['description']));
 			flag=1;
 			break;
 		}
