@@ -24,7 +24,7 @@ yargs.command({
 			type:'string' //doesn't allow boolean value meaning it expects an arguement
 		}
 	},
-	handler: function(argv){
+	handler(argv){
 		util.addNote(argv['title'],argv['author'],argv['body']);	
 	}
 })
@@ -40,7 +40,7 @@ yargs.command({
 			type:'string' //doesn't allow boolean value meaning it expects an arguement
 		}
 	},
-	handler: function(argv){
+	handler(argv){
 		util.readNote(argv['id']);
 	}
 })
@@ -49,7 +49,7 @@ yargs.command({
 yargs.command({
 	command:'display',
 	describe : 'Display Notes',
-	handler: function(){
+	handler(){
 		if(util.getNotes().length==0)
 			console.log(chalk.bgRed.underline('No notes found !'));
 		else
@@ -68,7 +68,7 @@ yargs.command({
 			type:'string' //doesn't allow boolean value meaning it expects an arguement
 		}
 	},
-	handler: function(argv){
+	handler(argv){
 		util.deleteNote(argv['id']);
 	}
 })

@@ -15,9 +15,7 @@ function getNotes(){ //Display all notes
 function addNote(t,a,b){ //Adding a new note
 	let uid;
 	const prevData = getNotes();
-	const duplicateCheck = prevData.find((item)=>{
-		return item.title === t; //returns the first element that matches the title instead of using filter() that checks entire array
-	})
+	const duplicateCheck = prevData.find(item=>item.title === t) //returns the first element that matches the title instead of using filter() that checks entire array
 	if(duplicateCheck === undefined){
 		if(prevData.length === 0)
 			uid=1;
