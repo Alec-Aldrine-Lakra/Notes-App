@@ -16,6 +16,7 @@ function addNote(t,a,b){ //Adding a new note
 	let uid;
 	const prevData = getNotes();
 	const duplicateCheck = prevData.find(item=>item.title === t) //returns the first element that matches the title instead of using filter() that checks entire array
+	debugger //debugging stuff
 	if(duplicateCheck === undefined){
 		if(prevData.length === 0)
 			uid=1;
